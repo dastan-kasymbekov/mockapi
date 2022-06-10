@@ -21,11 +21,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.form-btn {
-  background-color: #a7f8a3;
-  border: 1px solid #a7f8a3;
-  border-radius: 4px;
-  padding: 5px 15px ;
-  color: #015268;
-}

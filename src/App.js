@@ -2,13 +2,25 @@ import React, {useEffect, useState} from "react";
 import './App.css';
 import axios from "axios";
 import 'bootstrap'
-import Form from "./components/Form";
+import AddUserModal from "./AddUserModal";
+import {useForm} from "react-hook-form";
 
 function App() {
-
   const [students, setStudents] = useState([])
   const [isLoading, setIsloading] = useState(true)
+  const [openModal, setOpenModal] = useState(false)
+  const [editingUser, setEditingUser] = useState(null)
 
+  const deleteUser = async (id) => {
+    axios.delete(`https://6299dcea7b866a90ec447e8f.mockapi.io/students/${id}`)
+    const studentsList = students.filter(item => item.id !== id)
+    setStudents(studentsList)
+  }
+
+  const handleEdit = (student) => {
+    setEditingUser(student)
+    setOpenModal(true)
+  }
 
   useEffect(() => {
     axios.get('https://6299dcea7b866a90ec447e8f.mockapi.io/students')
@@ -22,17 +34,28 @@ function App() {
     return 'Loading...'
   }
 
-  const deleteUser = async (id) => {
-    axios.delete(`https://6299dcea7b866a90ec447e8f.mockapi.io/students/${id}`)
-    const studentsList = students.filter(item => item.id !== id)
-    setStudents(studentsList)
-  }
-
   return (
     <div className="App">
-      <div className="p-10 bg-yellow-50">
-        <Form/>
+      {
+        openModal &&
+        <AddUserModal setOpenModal={setOpenModal}
+                      students={students}
+                      setStudents={setStudents}
+                      editingUser={editingUser}
+                      setEditingUser={setEditingUser}
+                      />
+      }
+      <button
+        onClick={() => setOpenModal(true)}
+        className="border border-green-400 py-1 px-4 text-primary inline-block rounded bg-green-400 text-white my-6 ml-5">
+      Add new user</button>
+      <div className="flex items-center justify-center p-4">
+        <div className="mx-auto w-full max-w-[550px]">
+
+        </div>
       </div>
+
+
       <table className="table-auto w-full">
         <thead>
         <tr className="bg-primary text-center bg-blue-500">
@@ -98,8 +121,12 @@ function App() {
               <td
                 className=" text-center text-dark font-medium text-base py-5 px-2 bg-white border-b border-r border-[#E8E8E8] ">
                 <button
+                  onClick={() => handleEdit(student)}
+                  className="border border-yellow-500 py-1 px-4 text-primary inline-block hover:bg-yellow-600 rounded bg-yellow-500 text-white">
+                  Edit
+                </button> <button
                   onClick={() => deleteUser(student.id)}
-                  className=" border border-red-400 py-1 px-4 text-primary inline-block rounded hover:bg-red-400 hover:text-white ">
+                  className="border border-red-500 py-1 px-4 text-primary inline-block rounded hover:bg-red-600 bg-red-500 text-white ">
                   Delete
                 </button>
               </td>
