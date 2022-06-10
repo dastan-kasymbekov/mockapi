@@ -3,7 +3,6 @@ import './App.css';
 import axios from "axios";
 import 'bootstrap'
 import AddUserModal from "./AddUserModal";
-import {useForm} from "react-hook-form";
 
 function App() {
   const [students, setStudents] = useState([])
@@ -35,7 +34,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div>
       {
         openModal &&
         <AddUserModal setOpenModal={setOpenModal}
@@ -45,11 +44,8 @@ function App() {
                       setEditingUser={setEditingUser}
                       />
       }
-      <button
-        onClick={() => setOpenModal(true)}
-        className="border border-green-400 py-1 px-4 text-primary inline-block rounded bg-green-400 text-white my-6 ml-5">
-      Add new user</button>
-      <div className="flex items-center justify-center p-4">
+
+      <div className="flex items-center justify-center">
         <div className="mx-auto w-full max-w-[550px]">
 
         </div>
@@ -58,11 +54,13 @@ function App() {
 
       <table className="table-auto w-full">
         <thead>
-        <tr className="bg-primary text-center bg-blue-500">
+        <tr className="bg-primary text-center bg-violet-500">
           <th
             className=" w-1/7 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4 border-l border-transparent ">
-
-            #
+            <button
+              onClick={() => setOpenModal(true)}
+              className="border border-green-400 py-1 px-4 text-primary inline-block rounded bg-green-400 text-white">
+              Add new user</button>
           </th>
           <th
             className=" w-1/7 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-7 px-3 lg:px-4 ">
@@ -115,11 +113,11 @@ function App() {
                 {student.phone}
               </td>
               <td
-                className=" text-center text-dark font-medium text-base  py-5 px-2 bg-[#F3F6FF] border-b border-[#E8E8E8] ">
+                className=" text-center text-dark font-medium text-base  py-5 px-2 bg-white border-b border-[#E8E8E8] ">
                 {student.email}
               </td>
               <td
-                className=" text-center text-dark font-medium text-base py-5 px-2 bg-white border-b border-r border-[#E8E8E8] ">
+                className=" text-center text-dark font-medium text-base py-5 px-2 bg-[#F3F6FF] border-b border-r border-[#E8E8E8] ">
                 <button
                   onClick={() => handleEdit(student)}
                   className="border border-yellow-500 py-1 px-4 text-primary inline-block hover:bg-yellow-600 rounded bg-yellow-500 text-white">

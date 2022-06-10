@@ -51,15 +51,16 @@ const AddUserModal = ({students, setStudents, setOpenModal, editingUser, setEdit
             htmlFor="name"
             className="mb-3 block text-base font-medium text-[#07074D]"
           >
-            Full Name
+            Full name
           </label>
           <input
+            required
             type="text"
             name="name"
             id="name"
             value={newStudent.name}
             onChange={handleChange}
-            placeholder="Full Name"
+            placeholder="Full name"
             className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
           />
         </div>
@@ -71,12 +72,13 @@ const AddUserModal = ({students, setStudents, setOpenModal, editingUser, setEdit
             Group
           </label>
           <input
+            required
             type="text"
             name="group"
             id="group"
             value={newStudent.group}
             onChange={handleChange}
-            placeholder="MUGI-17"
+            placeholder="Enter your group"
             className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
           />
         </div>
@@ -88,6 +90,7 @@ const AddUserModal = ({students, setStudents, setOpenModal, editingUser, setEdit
             Year of admission
           </label>
           <input
+            required
             type="number"
             name="year"
             id="year"
@@ -105,6 +108,7 @@ const AddUserModal = ({students, setStudents, setOpenModal, editingUser, setEdit
             Phone
           </label>
           <input
+            required
             type="text"
             name="phone"
             id="phone"
@@ -130,11 +134,12 @@ const AddUserModal = ({students, setStudents, setOpenModal, editingUser, setEdit
             onChange={handleChange}
             placeholder="Enter your e-mail"
             className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            required
           />
         </div>
         <div>
           <button
-            className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none"
+            className="hover:shadow-form rounded-md bg-violet-500 hover:bg-violet-600 py-3 px-8 text-base font-semibold text-white outline-none"
           >
             {'Create'}
           </button>
